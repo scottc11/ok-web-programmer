@@ -2,6 +2,7 @@ import React from "react";
 import './Device.css';
 
 function Device(props) {
+    console.log(props.usbDevice);
     return (
         <div className="device">
             <span className="device-name">{props.usbDevice.productName}</span>

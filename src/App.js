@@ -1,36 +1,43 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
+import DFU from './DFU';
 import './App.css';
 import { Button, Device } from './components';
 
-function App() {
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      device: null
+    };
 
-  const [device, setDevice] = useState(null);
-
-  const selectDevice = async () => {
-    setDevice(await navigator.usb.requestDevice({ 'filters': [] }))
+    this.selectDevice = this.selectDevice.bind(this)
   }
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        OK-Web-Programmer
-      </header>
-      <div className='App-body App-bg'>
-        {device != null &&
-          <Device usbDevice={device} />
+  selectDevice() {
+    navigator.usb.requestDevice({ 'filters': [] }).then( device => {
+      this.setState(
+        {
+          device: device
         }
-        <Button text="connect" action={selectDevice} />
+      )
+    })
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          OK-Web-Programmer
+        </header>
+        <div className='App-body App-bg'>
+          {this.state.device != null &&
+            <Device usbDevice={this.state.device} />
+          }
+          <Button text="connect" action={this.selectDevice} />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;
-
-
-// navigator.usb.getDevices().then(devices => {
-//   console.log(`Number of Devices: ${devices.length}`);
-//   devices.forEach(device => {
-//     console.log("Product name: " + device.productName + ", serial number " + device.serialNumber);
-//   });
-// })
