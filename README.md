@@ -1,5 +1,11 @@
-### App Notes
+# Template for React + TypeScript + Sass + Webpack
 
-[AN3156](https://www.st.com/resource/en/application_note/cd00264379-usb-dfu-protocol-used-in-the-stm32-bootloader-stmicroelectronics.pdf)
+Based on the following guides
+- https://reactjs.org/docs/static-type-checking.html#typescript
+- https://webpack.js.org/guides/typescript/
 
-[AN2606](https://www.st.com/resource/en/application_note/cd00167594-stm32-microcontroller-system-memory-boot-mode-stmicroelectronics.pdf)
+
+## Reference
+### [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
+### [React/TypeScript Cheat Sheet](https://react-typescript-cheatsheet.netlify.app/docs/basic/setup)
+### [FlexBox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
