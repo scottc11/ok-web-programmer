@@ -1,18 +1,12 @@
-import React from 'react';
-import TextTile, { TileColor } from './components/TextTile/TextTile';
+import React from "react";
+import HomePage from "./components/HomePage/HomePage";
 
 function App() {
-    return (
-        <div className='app'>
-            <div className='tile-container'>
-                <TextTile text={'Webpack'} backgroundColor={TileColor.BLUE} />
-                <TextTile text={'+'} backgroundColor={TileColor.GREEN} />
-                <TextTile text={'TypeScript'} backgroundColor={TileColor.ORANGE} />
-                <TextTile text={'+'} backgroundColor={TileColor.WHITE} />
-                <TextTile text={'React'} backgroundColor={TileColor.YELLOW} />
-            </div>
-        </div>
-    )
+  return (
+    <div className="app">
+      <HomePage />
+    </div>
+  );
 }
 
 export default App;
