@@ -18,3 +18,6 @@ Based on the following guides
 - [FlexBox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 - https://reactjs.org/docs/static-type-checking.html#typescript
 - https://webpack.js.org/guides/typescript/
+- [Chrome Tutorial on WebUSB](https://developer.chrome.com/articles/usb/)
+- [USB Vendor IDs](http://www.linux-usb.org/usb.ids)
+- [dfu-util source code](https://sourceforge.net/p/dfu-util/dfu-util/ci/master/tree/src/)
