@@ -10,9 +10,7 @@ function App() {
     // })
 
     navigator.usb.requestDevice({filters: []}).then( (device: USBDevice) => {
-      console.log(device);
       let interfaces = dfu.findDeviceDfuInterfaces(device);
-      console.log(interfaces);
     });
 
   }
@@ -21,6 +19,7 @@ function App() {
     <div className="app">
       <Header />
       <button onClick={() => getDevices()}>connect</button>
+      <input type="file" disabled={false} />
     </div>
   );
 }
