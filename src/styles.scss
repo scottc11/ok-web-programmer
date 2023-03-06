@@ -1,1 +1,20 @@
 @import "./variables.scss";
+
+body {
+    background-color: $background-color;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    & div {
+        flex-grow: 1;
+    }
+}
+
+.logo {
+    width: 300px;
+}
