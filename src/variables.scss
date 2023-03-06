@@ -5,3 +5,15 @@ $cultured: #f7f7f7ff;
 $onyx: #404040ff;
 $quick-silver: #a5a6a5ff;
 $background-color: $quick-silver;
+
+// global variables
+$mainContainerBoxShadow: inset 0 0 5px $canary-yellow;
+$standardBorderRadius: 1rem;
+
+//  INHERETANCE
+%flexRowCenterPosition {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}

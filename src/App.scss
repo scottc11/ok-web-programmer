@@ -1,1 +1,8 @@
 @import "./variables.scss";
+
+.app {
+  width: 50vw;
+  min-height: 200vh; // this will change to auto
+  box-shadow: $mainContainerBoxShadow;
+  border-radius: $standardBorderRadius;
+}

@@ -1,1 +1,6 @@
-/*# sourceMappingURL=App.css.map */
+.app {
+  width: 50vw;
+  min-height: 200vh;
+  box-shadow: inset 0 0 5px #fff100;
+  border-radius: 1rem;
+}/*# sourceMappingURL=App.css.map */

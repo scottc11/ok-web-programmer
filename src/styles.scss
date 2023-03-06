@@ -3,4 +3,6 @@
 
 body {
   background-color: $background-color;
+  @extend %flexRowCenterPosition;
+  margin: 3rem;
 }
