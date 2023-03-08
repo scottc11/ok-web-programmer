@@ -13,7 +13,15 @@ function App() {
     });
   };
 
-  return <div className="app"></div>;
+  return (
+    <div className="app">
+      <div className=""></div>
+      <div className=""></div>
+      <div className=""></div>
+      <div className=""></div>
+      <div className=""></div>
+    </div>
+  );
 }
 
 export default App;
