@@ -5,6 +5,9 @@ import { Header } from "./components/Header/Header";
 import { Instructions } from "./components/Instructions/Instructions";
 
 function App() {
+  const [areInstructionsDisplayed, setAreInstructionsDisplayed] =
+    useState(false);
+
   const getDevices = () => {
     // navigator.usb.getDevices().then( (devices: USBDevice[]) =>{
     //   console.log(devices);
@@ -18,7 +21,10 @@ function App() {
   return (
     <div className="app">
       <Header />
-      <Instructions />
+      <Instructions
+        areInstructionsDisplayed={areInstructionsDisplayed}
+        setAreInstructionsDisplayed={setAreInstructionsDisplayed}
+      />
       <div className="progressBar"></div>
       <div className="stepsContainer"></div>
       <div className="message"></div>
