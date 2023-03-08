@@ -7,11 +7,14 @@ $quick-silver: #a5a6a5ff;
 $background-color: $quick-silver;
 
 // global variables
-$mainContainerBoxShadow: inset 0 0 5px $cultured;
+$mainContainerBoxShadow: inset 0 0 5px $amber-sae-ece;
+$headerContainerBoxShadow: 0 0 5px $canary-yellow;
 $standardBorderRadius: 1rem;
 $standardBorder: 1px solid black;
 
 //  INHERETANCE
+
+// GLOBAL INHERETANCE
 %flexRowCenterPosition {
   display: flex;
   flex-direction: row;
@@ -24,6 +27,15 @@ $standardBorder: 1px solid black;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+}
+
+// COMPONENT INHERETANCE
+
+// Header
+
+%hundredHeightWidth {
+  height: 100%;
+  width: 100%;
 }
 
 // dev variables (temp)

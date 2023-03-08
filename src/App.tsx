@@ -1,7 +1,7 @@
 import React from "react";
 import dfu from "./dfu-util-js/dfu";
 import "./App.scss";
-import logo from "./media/ok200logo.jpeg";
+import { Header } from "./components/Header/Header";
 
 function App() {
   const getDevices = () => {
@@ -16,7 +16,7 @@ function App() {
 
   return (
     <div className="app">
-      <div className="header"></div>
+      <Header />
       <div className="gS"></div>
       <div className="progressBar"></div>
       <div className="stepsContainer"></div>

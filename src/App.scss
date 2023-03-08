@@ -2,16 +2,10 @@
 
 .app {
   width: 65vw;
-  height: 150vh; // this will change to auto
+  height: 150vh;
   @extend %flexColumnCenterSpaceEvenly;
   box-shadow: $mainContainerBoxShadow;
   border-radius: $standardBorderRadius;
-}
-
-.header {
-  @extend %devBorder;
-  height: 15%;
-  width: 90%;
 }
 
 .gS {
@@ -28,7 +22,7 @@
 
 .stepsContainer {
   @extend %devBorder;
-  height: 55%;
+  height: 50%;
   width: 90%;
 }
 

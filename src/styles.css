@@ -11,11 +11,11 @@ body {
 }
 
 html::-webkit-scrollbar {
-  width: 0.15rem;
+  width: 1px;
 }
 
 html::-webkit-scrollbar-thumb {
-  background-color: #f7f7f7;
+  background-color: #ff7f11;
 }
 
 html::-webkit-scrollbar-track {

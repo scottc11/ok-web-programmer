@@ -1,0 +1,23 @@
+@import "../../variables.scss";
+
+.header {
+  height: 13%;
+  width: 75%;
+}
+
+.header img {
+  @extend %hundredHeightWidth;
+  border-radius: $standardBorderRadius;
+  box-shadow: $headerContainerBoxShadow;
+}
+
+.header img:hover {
+  cursor: none;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    height: 8%;
+    width: 65%;
+  }
+}

@@ -8,11 +8,11 @@ body {
 }
 
 html::-webkit-scrollbar {
-  width: 0.15rem;
+  width: 1px;
 }
 
 html::-webkit-scrollbar-thumb {
-  background-color: $cultured;
+  background-color: $amber-sae-ece;
 }
 
 html::-webkit-scrollbar-track {
