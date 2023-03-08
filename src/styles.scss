@@ -4,6 +4,7 @@
 body {
   background-color: $background-color;
   @extend %flexRowCenterPosition;
+  font-family: "Ubuntu", sans-serif;
   margin: 3rem;
 }
 

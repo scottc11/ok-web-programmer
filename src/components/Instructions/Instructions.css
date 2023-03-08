@@ -1,0 +1,34 @@
+.btnContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.btnContainer {
+  border: 1px solid black;
+  border-radius: 1rem;
+}
+
+.btnContainer {
+  height: 15%;
+  width: 60%;
+}
+
+.btnContainer button {
+  height: 3rem;
+  width: auto;
+  background-color: #a5a6a5;
+  border: none;
+  box-shadow: 0 0 5px #fff100;
+  padding: 1rem;
+  border-radius: 1rem;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 100;
+  color: #404040;
+}
+
+.btnContainer button:hover {
+  cursor: pointer;
+  background-color: #fff100;
+}/*# sourceMappingURL=Instructions.css.map */

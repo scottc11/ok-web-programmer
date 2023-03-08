@@ -8,12 +8,12 @@ $background-color: $quick-silver;
 
 // global variables
 $mainContainerBoxShadow: inset 0 0 5px $amber-sae-ece;
-$headerContainerBoxShadow: 0 0 5px $canary-yellow;
+$yellowContainerBoxShadow: 0 0 5px $canary-yellow;
 $standardBorderRadius: 1rem;
 $standardBorder: 1px solid black;
+$gSButtonBorder: 1px solid $canary-yellow;
 
 //  INHERETANCE
-
 // GLOBAL INHERETANCE
 %flexRowCenterPosition {
   display: flex;

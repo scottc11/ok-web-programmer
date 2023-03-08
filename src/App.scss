@@ -8,12 +8,6 @@
   border-radius: $standardBorderRadius;
 }
 
-.gS {
-  @extend %devBorder;
-  height: 15%;
-  width: 60%;
-}
-
 .progressBar {
   @extend %devBorder;
   height: 5%;

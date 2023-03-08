@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import dfu from "./dfu-util-js/dfu";
 import "./App.scss";
 import { Header } from "./components/Header/Header";
+import { Instructions } from "./components/Instructions/Instructions";
 
 function App() {
   const getDevices = () => {
@@ -17,7 +18,7 @@ function App() {
   return (
     <div className="app">
       <Header />
-      <div className="gS"></div>
+      <Instructions />
       <div className="progressBar"></div>
       <div className="stepsContainer"></div>
       <div className="message"></div>
