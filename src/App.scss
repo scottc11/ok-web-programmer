@@ -1,8 +1,45 @@
 @import "./variables.scss";
 
 .app {
-  width: 50vw;
-  min-height: 150vh; // this will change to auto
+  width: 65vw;
+  height: 150vh; // this will change to auto
+  @extend %flexColumnCenterSpaceEvenly;
   box-shadow: $mainContainerBoxShadow;
   border-radius: $standardBorderRadius;
+}
+
+.header {
+  @extend %devBorder;
+  height: 15%;
+  width: 90%;
+}
+
+.gS {
+  @extend %devBorder;
+  height: 15%;
+  width: 60%;
+}
+
+.progressBar {
+  @extend %devBorder;
+  height: 5%;
+  width: 80%;
+}
+
+.stepsContainer {
+  @extend %devBorder;
+  height: 55%;
+  width: 90%;
+}
+
+.message {
+  @extend %devBorder;
+  height: 5%;
+  width: 80%;
+}
+
+@media screen and (max-width: 768px) {
+  .app {
+    width: 90vw;
+  }
 }

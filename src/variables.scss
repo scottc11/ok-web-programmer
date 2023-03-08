@@ -9,6 +9,7 @@ $background-color: $quick-silver;
 // global variables
 $mainContainerBoxShadow: inset 0 0 5px $cultured;
 $standardBorderRadius: 1rem;
+$standardBorder: 1px solid black;
 
 //  INHERETANCE
 %flexRowCenterPosition {
@@ -16,4 +17,17 @@ $standardBorderRadius: 1rem;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+%flexColumnCenterSpaceEvenly {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+// dev variables (temp)
+%devBorder {
+  border: 1px solid black;
+  border-radius: 1rem;
 }
