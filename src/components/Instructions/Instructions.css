@@ -5,9 +5,11 @@
   align-items: center;
 }
 
-.btnContainer {
-  border: 1px solid black;
-  border-radius: 1rem;
+.instructionsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .btnContainer {
@@ -31,4 +33,40 @@
 .btnContainer button:hover {
   cursor: pointer;
   background-color: #fff100;
+}
+
+.instructionsContainer {
+  height: 15%;
+  width: 60%;
+  box-shadow: 0 0 5px #fff100;
+  border-radius: 1rem;
+  overflow: hidden;
+  overflow-y: scroll;
+  font-weight: 100;
+  font-size: 0.9rem;
+}
+
+.instructionsContainer div {
+  margin: 1rem;
+  height: auto;
+  width: 80%;
+  text-align: center;
+}
+
+.instructionsContainer div button {
+  height: 3rem;
+  width: auto;
+  background-color: #a5a6a5;
+  border: none;
+  box-shadow: 0 0 5px #fff100;
+  padding: 1rem;
+  border-radius: 1rem;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 100;
+  color: #404040;
+}
+
+.instructionsContainer div button:hover {
+  cursor: pointer;
+  background-color: #f7f7f7;
 }/*# sourceMappingURL=Instructions.css.map */

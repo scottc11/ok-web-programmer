@@ -29,6 +29,13 @@ $gSButtonBorder: 1px solid $canary-yellow;
   justify-content: space-evenly;
 }
 
+%flexColumnCenterStart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 // COMPONENT INHERETANCE
 
 // Header
