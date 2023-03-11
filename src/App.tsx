@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import dfu from "./dfu-util-js/dfu";
 import "./App.scss";
-import { Header } from "./components/Header/Header";
-import { Instructions } from "./components/Instructions/Instructions";
+import Header from "./components/Header/Header";
+import Instructions from "./components/Instructions/Instructions";
 
 function App() {
   const [areInstructionsDisplayed, setAreInstructionsDisplayed] =

@@ -2,7 +2,7 @@ import React from "react";
 import "./Instructions.scss";
 import { instructionsProps } from "../../typescriptHelperFiles/models";
 
-export const Instructions: React.FC<instructionsProps> = ({
+const Instructions: React.FC<instructionsProps> = ({
   areInstructionsDisplayed,
   setAreInstructionsDisplayed,
 }: instructionsProps) => {
@@ -70,3 +70,5 @@ export const Instructions: React.FC<instructionsProps> = ({
     </>
   );
 };
+
+export default Instructions;
