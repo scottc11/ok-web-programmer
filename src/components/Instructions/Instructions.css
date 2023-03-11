@@ -39,11 +39,22 @@
   height: 15%;
   width: 60%;
   box-shadow: 0 0 10px 1000px rgba(0, 0, 0, 0.7);
-  border-radius: 1rem;
   overflow: hidden;
   overflow-y: scroll;
   font-weight: 100;
   font-size: 0.9rem;
+}
+
+.instructionsContainer::-webkit-scrollbar {
+  width: 1px;
+}
+
+.instructionsContainer::-webkit-scrollbar-thumb {
+  background-color: #ff7f11;
+}
+
+.instructionsContainer::-webkit-scrollbar-track {
+  background-color: transparent;
 }
 
 .instructionsContainer div {
