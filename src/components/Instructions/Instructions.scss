@@ -28,7 +28,7 @@
   height: 15%;
   width: 60%;
   @extend %flexColumnCenterStart;
-  box-shadow: $yellowContainerBoxShadow;
+  box-shadow: $grayBackgroundShadow;
   border-radius: $standardBorderRadius;
   overflow: hidden;
   overflow-y: scroll;

@@ -38,7 +38,7 @@
 .instructionsContainer {
   height: 15%;
   width: 60%;
-  box-shadow: 0 0 5px #fff100;
+  box-shadow: 0 0 10px 1000px rgba(0, 0, 0, 0.7);
   border-radius: 1rem;
   overflow: hidden;
   overflow-y: scroll;
