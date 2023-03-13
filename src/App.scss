@@ -8,12 +8,6 @@
   border-radius: $standardBorderRadius;
 }
 
-.stepsContainer {
-  @extend %devBorder;
-  height: 50%;
-  width: 90%;
-}
-
 .message {
   @extend %devBorder;
   height: 5%;

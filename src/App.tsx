@@ -4,6 +4,7 @@ import "./App.scss";
 import Header from "./components/Header/Header";
 import Instructions from "./components/Instructions/Instructions";
 import ProgressBar from "./components/ProgessBar/ProgressBar";
+import Steps from "./components/Steps/Steps";
 
 function App() {
   const [areInstructionsDisplayed, setAreInstructionsDisplayed] =
@@ -27,7 +28,7 @@ function App() {
         setAreInstructionsDisplayed={setAreInstructionsDisplayed}
       />
       <ProgressBar />
-      <div className="stepsContainer"></div>
+      <Steps />
       <div className="message"></div>
     </div>
   );

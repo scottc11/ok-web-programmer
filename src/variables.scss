@@ -9,6 +9,7 @@ $background-color: $quick-silver;
 // global variables
 $mainContainerBoxShadow: inset 0 0 5px $amber-sae-ece;
 $yellowContainerBoxShadow: 0 0 5px $canary-yellow;
+$orangeContainerBoxShadow: 0 0 10px $amber-sae-ece;
 $grayBackgroundShadow: 0 0 10px 1000px rgba(0, 0, 0, 0.7);
 $standardBorderRadius: 1rem;
 $standardBorder: 1px solid black;
@@ -19,6 +20,13 @@ $standardBorder: 1px solid black;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
+}
+
+%flexRowSpaceBetweenCenter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -46,6 +54,10 @@ $standardBorder: 1px solid black;
   width: 80%;
 }
 
+%stepContainerHeightWidth {
+  height: 20%;
+  width: 80%;
+}
 // dev variables (temp)
 %devBorder {
   border: 1px solid black;

@@ -26,11 +26,12 @@
   border-radius: 1rem;
   color: #f7f7f7;
   overflow: hidden;
+  font-weight: 100;
 }
 
 .progressFill {
   height: 100%;
-  width: 75%;
+  width: 0%;
   background-color: #ff7f11;
 }
 

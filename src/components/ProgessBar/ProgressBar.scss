@@ -13,11 +13,12 @@
   border-radius: $standardBorderRadius;
   color: $cultured;
   overflow: hidden;
+  font-weight: 100;
 }
 
 .progressFill {
   height: 100%;
-  width: 75%;
+  width: 0%;
   background-color: $amber-sae-ece;
 }
 
