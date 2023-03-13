@@ -2,7 +2,7 @@
 
 .app {
   width: 65vw;
-  height: 150vh;
+  height: 1250px;
   @extend %flexColumnCenterSpaceEvenly;
   box-shadow: $mainContainerBoxShadow;
   border-radius: $standardBorderRadius;

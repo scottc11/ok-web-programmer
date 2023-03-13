@@ -12,11 +12,46 @@
 }
 
 .step {
-  @extend %devBorder;
-
   flex: 10;
   height: 100%;
+  @extend %flexColumnCenterSpaceEvenly;
 }
+
+.instructionTitle {
+  font-weight: 100;
+  font-size: 0.9rem;
+}
+
+.bootloaderContainer {
+  height: 2.5rem;
+  width: 80%;
+}
+
+.bootloaderContainer input {
+  @extend %hundredHeightWidth;
+  background-color: $background-color;
+  border: none;
+  border: $standardBorder;
+  border-radius: $standardBorderRadius;
+  text-align: center;
+}
+
+.bootloaderContainer input:focus {
+  outline: none;
+  border: none;
+  box-shadow: $orangeContainerBoxShadow;
+  transition: 0.3s;
+}
+
+.instructionText {
+  text-align: center;
+  width: 80%;
+  font-size: 0.6rem;
+}
+//
+//
+//
+//
 
 .checkBtn {
   @extend %flexRowCenterPosition;
@@ -25,10 +60,19 @@
 }
 
 .checkmark {
-  height: 25px;
-  width: 25px;
+  @extend %checkInputHeightWidth;
   background-color: $cultured;
-  border-radius: 50%;
+  border-radius: $radiusCircle;
   cursor: not-allowed;
   box-shadow: $orangeContainerBoxShadow;
+}
+
+@media screen and (max-width: 768px) {
+  .step {
+    flex: 12;
+  }
+
+  .checkBtn {
+    flex: 2;
+  }
 }
