@@ -1,4 +1,4 @@
-.checkBtn {
+.checkBtn, .step4, .fileInputContainer, .fileInputText, .step2 {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -12,7 +12,7 @@
   align-items: center;
 }
 
-.step, .stepsContainer {
+.step3, .step1, .stepsContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,19 +29,36 @@
   width: 80%;
 }
 
+.step4, .step3, .step2, .step1 {
+  flex: 10;
+  height: 100%;
+}
+
 .checkmark {
   height: 25px;
   width: 25px;
 }
 
+.step4 button, .step2 button {
+  height: 3rem;
+  width: 6rem;
+  background-color: #f7f7f7;
+  font-size: medium;
+  font-weight: 100;
+  font-size: 0.8rem;
+  border: none;
+  border-radius: 1rem;
+}
+
+.step4 button:hover, .step2 button:hover {
+  cursor: pointer;
+  box-shadow: 0 0 10px #ff7f11;
+  transition: all 0.3s;
+}
+
 .stepsContainer {
   height: 50%;
   width: 90%;
-}
-
-.step {
-  flex: 10;
-  height: 100%;
 }
 
 .instructionTitle {
@@ -55,11 +72,15 @@
 }
 
 .bootloaderContainer input {
-  background-color: #a5a6a5;
+  background-color: #f7f7f7;
   border: none;
-  border: 1px solid black;
   border-radius: 1rem;
   text-align: center;
+}
+
+.bootloaderContainer input:hover {
+  box-shadow: 0 0 10px #ff7f11;
+  transition: 0.3s;
 }
 
 .bootloaderContainer input:focus {
@@ -75,6 +96,30 @@
   font-size: 0.6rem;
 }
 
+.fileInputText {
+  width: 90%;
+  height: 60%;
+  text-align: center;
+  font-weight: 100;
+  font-size: 0.8rem;
+}
+
+.fileInputContainer {
+  width: 90%;
+  height: 30%;
+  background-color: #f7f7f7;
+  border-radius: 1rem;
+}
+
+.fileInputContainer:hover {
+  box-shadow: 0 0 10px #ff7f11;
+  transition: 0.3s;
+}
+
+.fileInputContainer input:hover {
+  cursor: pointer;
+}
+
 .checkBtn {
   flex: 2;
   height: 100%;
@@ -88,9 +133,6 @@
 }
 
 @media screen and (max-width: 768px) {
-  .step {
-    flex: 12;
-  }
   .checkBtn {
     flex: 2;
   }

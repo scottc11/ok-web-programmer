@@ -11,9 +11,8 @@
   @extend %flexRowSpaceBetweenCenter;
 }
 
-.step {
-  flex: 10;
-  height: 100%;
+.step1 {
+  @extend %stepDivDimention;
   @extend %flexColumnCenterSpaceEvenly;
 }
 
@@ -29,11 +28,15 @@
 
 .bootloaderContainer input {
   @extend %hundredHeightWidth;
-  background-color: $background-color;
+  background-color: $cultured;
   border: none;
-  border: $standardBorder;
   border-radius: $standardBorderRadius;
   text-align: center;
+}
+
+.bootloaderContainer input:hover {
+  box-shadow: $orangeContainerBoxShadow;
+  transition: 0.3s;
 }
 
 .bootloaderContainer input:focus {
@@ -48,10 +51,62 @@
   width: 80%;
   font-size: 0.6rem;
 }
-//
-//
-//
-//
+
+.step2 {
+  @extend %stepDivDimention;
+  @extend %flexRowCenterPosition;
+}
+
+.step2 button {
+  @extend %stepBtn;
+}
+
+.step2 button:hover {
+  @extend %stepBtnHover;
+}
+
+.step3 {
+  @extend %stepDivDimention;
+  @extend %flexColumnCenterSpaceEvenly;
+}
+
+.fileInputText {
+  width: 90%;
+  height: 60%;
+  @extend %flexRowCenterPosition;
+  text-align: center;
+  font-weight: 100;
+  font-size: 0.8rem;
+}
+.fileInputContainer {
+  width: 90%;
+  height: 30%;
+  @extend %flexRowCenterPosition;
+  background-color: $cultured;
+  border-radius: $standardBorderRadius;
+}
+
+.fileInputContainer:hover {
+  box-shadow: $orangeContainerBoxShadow;
+  transition: 0.3s;
+}
+
+.fileInputContainer input:hover {
+  cursor: pointer;
+}
+
+.step4 {
+  @extend %stepDivDimention;
+  @extend %flexRowCenterPosition;
+}
+
+.step4 button {
+  @extend %stepBtn;
+}
+
+.step4 button:hover {
+  @extend %stepBtnHover;
+}
 
 .checkBtn {
   @extend %flexRowCenterPosition;
@@ -68,10 +123,6 @@
 }
 
 @media screen and (max-width: 768px) {
-  .step {
-    flex: 12;
-  }
-
   .checkBtn {
     flex: 2;
   }

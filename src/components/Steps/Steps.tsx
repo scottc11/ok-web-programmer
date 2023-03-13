@@ -5,7 +5,7 @@ const Steps = () => {
   return (
     <div className="stepsContainer">
       <div className="stepContainer">
-        <div className="step">
+        <div className="step1">
           <div className="instructionTitle">Enter Bootloader Mode</div>
           <div className="bootloaderContainer">
             <input type="text" list="options" />
@@ -26,19 +26,32 @@ const Steps = () => {
         </div>
       </div>
       <div className="stepContainer">
-        <div className="step"></div>
+        <div className="step2">
+          <button>connect</button>
+        </div>
         <div className="checkBtn">
           <span className="checkmark"></span>
         </div>
       </div>
       <div className="stepContainer">
-        <div className="step"></div>
+        <div className="step3">
+          <div className="fileInputText">
+            Here There will be helper text explaining which file they need to
+            select, and if they don't have access to it, then further details as
+            to how to obtain the firmware file
+          </div>
+          <div className="fileInputContainer">
+            <input type="file" />
+          </div>
+        </div>
         <div className="checkBtn">
           <span className="checkmark"></span>
         </div>
       </div>
       <div className="stepContainer">
-        <div className="step"></div>
+        <div className="step4">
+          <button>Upload</button>
+        </div>
         <div className="checkBtn">
           <span className="checkmark"></span>
         </div>

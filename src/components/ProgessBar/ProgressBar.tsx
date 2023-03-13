@@ -6,7 +6,7 @@ const ProgressBar = () => {
     <div className="PBContainer">
       <div className="progressBar">
         <div className="progressFill"></div>
-        <div className="progressText">0%</div>
+        <div className="progressText">0 of 4 steps completed</div>
       </div>
     </div>
   );
