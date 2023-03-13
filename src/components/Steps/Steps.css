@@ -74,6 +74,7 @@
 .bootloaderContainer input {
   background-color: #f7f7f7;
   border: none;
+  border: 1px solid #ff7f11;
   border-radius: 1rem;
   text-align: center;
 }
@@ -96,6 +97,10 @@
   font-size: 0.6rem;
 }
 
+.step2 button {
+  border: 1px solid #ff7f11;
+}
+
 .fileInputText {
   width: 90%;
   height: 60%;
@@ -107,6 +112,7 @@
 .fileInputContainer {
   width: 90%;
   height: 30%;
+  border: 1px solid #ff7f11;
   background-color: #f7f7f7;
   border-radius: 1rem;
 }
@@ -118,6 +124,10 @@
 
 .fileInputContainer input:hover {
   cursor: pointer;
+}
+
+.step4 button {
+  border: 1px solid #ff7f11;
 }
 
 .checkBtn {

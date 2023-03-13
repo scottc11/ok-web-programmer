@@ -20,10 +20,10 @@
 .btnContainer button {
   height: 3rem;
   width: auto;
-  background-color: #a5a6a5;
+  background-color: #f7f7f7;
   border: none;
-  box-shadow: 0 0 5px #fff100;
   padding: 1rem;
+  border: 1px solid #ff7f11;
   border-radius: 1rem;
   font-family: "Ubuntu", sans-serif;
   font-weight: 100;
@@ -32,17 +32,20 @@
 
 .btnContainer button:hover {
   cursor: pointer;
-  background-color: #fff100;
+  box-shadow: 0 0 10px #ff7f11;
+  transform: all 0.3s;
 }
 
 .instructionsContainer {
   height: 15%;
   width: 60%;
+  box-shadow: 0 0 10px #ff7f11;
   box-shadow: 0 0 10px 1000px rgba(0, 0, 0, 0.7);
   overflow: hidden;
   overflow-y: scroll;
   font-weight: 100;
   font-size: 0.9rem;
+  background-color: #f7f7f7;
 }
 
 .instructionsContainer::-webkit-scrollbar {
@@ -67,17 +70,17 @@
 .instructionsContainer div button {
   height: 3rem;
   width: auto;
-  background-color: #a5a6a5;
+  background-color: #f7f7f7;
   border: none;
-  box-shadow: 0 0 5px #fff100;
+  border: 1px solid #ff7f11;
   padding: 1rem;
   border-radius: 1rem;
   font-family: "Ubuntu", sans-serif;
   font-weight: 100;
-  color: #404040;
 }
 
 .instructionsContainer div button:hover {
   cursor: pointer;
-  background-color: #f7f7f7;
+  box-shadow: 0 0 10px #ff7f11;
+  transition: all 0.3s;
 }/*# sourceMappingURL=Instructions.css.map */
