@@ -3,6 +3,7 @@ import dfu from "./dfu-util-js/dfu";
 import "./App.scss";
 import Header from "./components/Header/Header";
 import Instructions from "./components/Instructions/Instructions";
+import ProgressBar from "./components/ProgessBar/ProgressBar";
 
 function App() {
   const [areInstructionsDisplayed, setAreInstructionsDisplayed] =
@@ -25,7 +26,7 @@ function App() {
         areInstructionsDisplayed={areInstructionsDisplayed}
         setAreInstructionsDisplayed={setAreInstructionsDisplayed}
       />
-      <div className="progressBar"></div>
+      <ProgressBar />
       <div className="stepsContainer"></div>
       <div className="message"></div>
     </div>

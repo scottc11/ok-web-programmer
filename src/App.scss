@@ -8,12 +8,6 @@
   border-radius: $standardBorderRadius;
 }
 
-.progressBar {
-  @extend %devBorder;
-  height: 5%;
-  width: 80%;
-}
-
 .stepsContainer {
   @extend %devBorder;
   height: 50%;

@@ -29,7 +29,6 @@
   width: 60%;
   @extend %flexColumnCenterStart;
   box-shadow: $grayBackgroundShadow;
-  //   border-radius: $standardBorderRadius;
   overflow: hidden;
   overflow-y: scroll;
   font-weight: 100;
@@ -37,7 +36,7 @@
 }
 
 .instructionsContainer::-webkit-scrollbar {
-  width: 1px;
+  width: 3px;
 }
 
 .instructionsContainer::-webkit-scrollbar-thumb {

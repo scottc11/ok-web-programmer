@@ -10,13 +10,11 @@ $background-color: $quick-silver;
 $mainContainerBoxShadow: inset 0 0 5px $amber-sae-ece;
 $yellowContainerBoxShadow: 0 0 5px $canary-yellow;
 $grayBackgroundShadow: 0 0 10px 1000px rgba(0, 0, 0, 0.7);
-
 $standardBorderRadius: 1rem;
 $standardBorder: 1px solid black;
-$gSButtonBorder: 1px solid $canary-yellow;
 
 //  INHERETANCE
-// GLOBAL INHERETANCE
+
 %flexRowCenterPosition {
   display: flex;
   flex-direction: row;
@@ -38,13 +36,14 @@ $gSButtonBorder: 1px solid $canary-yellow;
   justify-content: flex-start;
 }
 
-// COMPONENT INHERETANCE
-
-// Header
-
 %hundredHeightWidth {
   height: 100%;
   width: 100%;
+}
+
+%PBHeightAndWidth {
+  height: 75%;
+  width: 80%;
 }
 
 // dev variables (temp)
