@@ -8,12 +8,6 @@
   border-radius: $standardBorderRadius;
 }
 
-.message {
-  @extend %devBorder;
-  height: 5%;
-  width: 80%;
-}
-
 @media screen and (max-width: 768px) {
   .app {
     width: 90vw;

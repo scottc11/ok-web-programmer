@@ -19,7 +19,7 @@
 
 .btnContainer button {
   height: 3rem;
-  width: auto;
+  width: 100%;
   background-color: #f7f7f7;
   border: none;
   padding: 1rem;
@@ -49,7 +49,7 @@
 }
 
 .instructionsContainer::-webkit-scrollbar {
-  width: 3px;
+  width: 2px;
 }
 
 .instructionsContainer::-webkit-scrollbar-thumb {
@@ -69,7 +69,7 @@
 
 .instructionsContainer div button {
   height: 3rem;
-  width: auto;
+  width: 100%;
   background-color: #f7f7f7;
   border: none;
   border: 1px solid #ff7f11;

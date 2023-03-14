@@ -5,10 +5,13 @@ import Header from "./components/Header/Header";
 import Instructions from "./components/Instructions/Instructions";
 import ProgressBar from "./components/ProgessBar/ProgressBar";
 import Steps from "./components/Steps/Steps";
+import Message from "./components/Message/Message";
 
 function App() {
   const [areInstructionsDisplayed, setAreInstructionsDisplayed] =
     useState(false);
+
+  const [isComplete, setIsComplete] = useState(true);
 
   const getDevices = () => {
     // navigator.usb.getDevices().then( (devices: USBDevice[]) =>{
@@ -29,7 +32,8 @@ function App() {
       />
       <ProgressBar />
       <Steps />
-      <div className="message"></div>
+
+      {isComplete ? <Message /> : ""}
     </div>
   );
 }

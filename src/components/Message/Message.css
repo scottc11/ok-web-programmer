@@ -1,0 +1,17 @@
+.messageContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.messageContainer {
+  background-color: #f7f7f7;
+  box-shadow: 0 0 10px #ff7f11;
+  border-radius: 1rem;
+  text-align: center;
+  font-size: 0.75rem;
+  height: 5%;
+  width: 80%;
+  padding: 0.5rem;
+}/*# sourceMappingURL=Message.css.map */
