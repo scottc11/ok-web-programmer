@@ -1,4 +1,4 @@
-.checkBtn, .step4, .fileInputContainer, .fileInputText, .step2 {
+.checkBtn, .step4, .fileInputContainer, .step2 {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -17,6 +17,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+}
+
+.fileInputText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .bootloaderContainer input {
@@ -41,7 +48,7 @@
 
 .step4 button, .step2 button {
   height: 3rem;
-  width: 6rem;
+  width: 80%;
   background-color: #f7f7f7;
   font-size: medium;
   font-weight: 100;
@@ -102,15 +109,29 @@
 }
 
 .fileInputText {
-  width: 90%;
-  height: 60%;
+  width: 80%;
+  height: 50%;
   text-align: center;
   font-weight: 100;
   font-size: 0.8rem;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.fileInputText::-webkit-scrollbar {
+  width: 1px;
+}
+
+.fileInputText::-webkit-scrollbar-thumb {
+  background-color: #ff7f11;
+}
+
+.fileInputText::-webkit-scrollbar-track {
+  background-color: transparent;
 }
 
 .fileInputContainer {
-  width: 90%;
+  width: 80%;
   height: 30%;
   border: 1px solid #ff7f11;
   background-color: #f7f7f7;

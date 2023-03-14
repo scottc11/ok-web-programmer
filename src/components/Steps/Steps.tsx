@@ -38,7 +38,10 @@ const Steps = () => {
           <div className="fileInputText">
             Here There will be helper text explaining which file they need to
             select, and if they don't have access to it, then further details as
-            to how to obtain the firmware file
+            to how to obtain the firmware file. Here There will be helper text
+            explaining which file they need to select, and if they don't have
+            access to it, then further details as to how to obtain the firmware
+            file
           </div>
           <div className="fileInputContainer">
             <input type="file" />
