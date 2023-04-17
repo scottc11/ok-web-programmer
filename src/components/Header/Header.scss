@@ -1,7 +1,23 @@
 @import "../../variables.scss";
 
 .header {
-    &__container {
-        text-align: center;
-    }
+  height: 13%;
+  width: 70%;
+}
+
+.header img {
+  @extend %hundredHeightWidth;
+  border-radius: $standardBorderRadius;
+  box-shadow: $yellowContainerBoxShadow;
+}
+
+.header img:hover {
+  cursor: none;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    height: 8%;
+    width: 50%;
+  }
 }

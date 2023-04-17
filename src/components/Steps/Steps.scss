@@ -1,0 +1,149 @@
+@import "../../variables.scss";
+
+.stepsContainer {
+  height: 50%;
+  width: 90%;
+  @extend %flexColumnCenterSpaceEvenly;
+}
+
+.stepContainer {
+  @extend %stepContainerHeightWidth;
+  @extend %flexRowSpaceBetweenCenter;
+}
+
+.step1 {
+  @extend %stepDivDimention;
+  @extend %flexColumnCenterSpaceEvenly;
+}
+
+.instructionTitle {
+  font-weight: 100;
+  font-size: 0.9rem;
+}
+
+.bootloaderContainer {
+  height: 2.5rem;
+  width: 80%;
+}
+
+.bootloaderContainer input {
+  @extend %hundredHeightWidth;
+  background-color: $cultured;
+  border: none;
+  border: 1px solid $amber-sae-ece;
+  border-radius: $standardBorderRadius;
+  text-align: center;
+}
+
+.bootloaderContainer input:hover {
+  box-shadow: $orangeContainerBoxShadow;
+  transition: 0.3s;
+}
+
+.bootloaderContainer input:focus {
+  outline: none;
+  border: none;
+  box-shadow: $orangeContainerBoxShadow;
+  transition: 0.3s;
+}
+
+.instructionText {
+  text-align: center;
+  width: 80%;
+  font-size: 0.6rem;
+}
+
+.step2 {
+  @extend %stepDivDimention;
+  @extend %flexRowCenterPosition;
+}
+
+.step2 button {
+  @extend %stepBtn;
+  border: 1px solid $amber-sae-ece;
+}
+
+.step2 button:hover {
+  @extend %stepBtnHover;
+}
+
+.step3 {
+  @extend %stepDivDimention;
+  @extend %flexColumnCenterSpaceEvenly;
+}
+
+.fileInputText {
+  //   background-color: darkblue;
+  width: 80%;
+  height: 50%;
+  @extend %flexColumnCenterStart;
+  text-align: center;
+  font-weight: 100;
+  font-size: 0.75rem;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.fileInputText::-webkit-scrollbar {
+  width: 1px;
+}
+
+.fileInputText::-webkit-scrollbar-thumb {
+  background-color: $amber-sae-ece;
+}
+
+.fileInputText::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.fileInputContainer {
+  width: 80%;
+  height: 30%;
+  @extend %flexRowCenterPosition;
+  border: 1px solid $amber-sae-ece;
+  background-color: $cultured;
+  border-radius: $standardBorderRadius;
+}
+
+.fileInputContainer:hover {
+  box-shadow: $orangeContainerBoxShadow;
+  transition: 0.3s;
+}
+
+.fileInputContainer input:hover {
+  cursor: pointer;
+}
+
+.step4 {
+  @extend %stepDivDimention;
+  @extend %flexRowCenterPosition;
+}
+
+.step4 button {
+  @extend %stepBtn;
+  border: 1px solid $amber-sae-ece;
+}
+
+.step4 button:hover {
+  @extend %stepBtnHover;
+}
+
+.checkBtn {
+  @extend %flexRowCenterPosition;
+  flex: 2;
+  height: 100%;
+}
+
+.checkmark {
+  @extend %checkInputHeightWidth;
+  background-color: $cultured;
+  border-radius: $radiusCircle;
+  cursor: not-allowed;
+  box-shadow: $orangeContainerBoxShadow;
+}
+
+@media screen and (max-width: 768px) {
+  .checkBtn {
+    flex: 2;
+  }
+}
