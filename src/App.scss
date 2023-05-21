@@ -1,15 +1,6 @@
 @import "./variables.scss";
 
 .app {
-  width: 65vw;
-  height: 1250px;
-  @extend %flexColumnCenterSpaceEvenly;
-  box-shadow: $mainContainerBoxShadow;
-  border-radius: $standardBorderRadius;
-}
-
-@media screen and (max-width: 768px) {
-  .app {
-    width: 90vw;
-  }
+  // display: flex;
+  
 }
