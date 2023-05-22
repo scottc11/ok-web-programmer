@@ -1,41 +1,30 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import dfu from "./dfu-util-js/dfu";
+import DFU from "./dfu-util-js/dfu";
 import "./App.scss";
 import Header from "./components/Header/Header";
 
 function App() {
 
-  const [device, setDevice] = useState<USBDevice>(null);
+  const [dfu] = useState<DFU>(new DFU());
+  const [deviceStatus, setDeviceStatus] = useState('');
   const [file, setFile] = useState<any>(null);
-  const [deviceName, setDeviceName] = useState('');
-  const [deviceMFG, setDeviceMFG] = useState('');
-  const [deviceSerial, setDeviceSerial] = useState('');
 
   const connect = () => {
-    navigator.usb.requestDevice({ filters: [] }).then((device: USBDevice) => {
-      let interfaces = dfu.findDeviceDfuInterfaces(device);
-      setDevice(device);
-      console.log(device);
-      const settings = interfaces[0];
-      console.log(settings);
-      const interfaceNumber = settings.interface.interfaceNumber;
-      console.log(interfaceNumber);
-
-      if (device) {
-        setDeviceName(device.productName);
-        setDeviceMFG(device.manufacturerName);
-        setDeviceSerial(device.serialNumber);
-        device.open();
+    navigator.usb.requestDevice({ filters: [] }).then(async (device: USBDevice) => {
+      await dfu.connect(device);
+      if (dfu.isOpened) {
+        const status = await dfu.getStatus();
+        setDeviceStatus('status.status');
+      } else {
+        setDeviceStatus('Failed to connect to device');
       }
-
     });
   };
 
-  const disconnect = () => {
-    if (device) {
-      device.close();
-      console.log(`Disconnected from ${device.productName}`)
-    }
+
+  const disconnect = async () => {
+    await dfu.disconnect();
+    setDeviceStatus('disconnected');
   }
 
   const chooseFile = (event: ChangeEvent<HTMLInputElement>) => {
@@ -53,12 +42,6 @@ function App() {
     }
   }
 
-  const upload = () => {
-    if (device && file) {
-      console.log('upload');
-    }
-  }
-
   useEffect(() => {
     console.log(file);
   }, [file]);
@@ -72,9 +55,20 @@ function App() {
         
         <button onClick={() => disconnect()}>Disconnect</button>
         
-        <p>{deviceName}</p>
-        <p>{deviceMFG}</p>
-        <p>{deviceSerial}</p>
+        <div>
+          <p>
+            {`Device Status: ${deviceStatus}`}
+          </p>
+        </div>
+
+        { dfu.device && 
+          <div>
+            <p>{dfu.device.productName}</p>
+            <p>{dfu.device.manufacturerName}</p>
+            <p>{dfu.device.serialNumber}</p>
+          </div>
+        }
+
         <div>
           <input
             type="file"
@@ -85,7 +79,7 @@ function App() {
           />
         </div>
         <div>
-          <button disabled={device && file ? false : true} onClick={() => upload()}>Upload</button>
+          <button disabled={dfu && file ? false : true} onClick={() => dfu.upload(file)}>Upload</button>
         </div>
       </div>
     </div>

@@ -29,59 +29,46 @@ export function niceSize(n) {
     }
 }
 
-export function formatDFUSummary(device) {
-    const vid = hex4(device.device_.vendorId);
-    const pid = hex4(device.device_.productId);
-    const name = device.device_.productName;
-
-    let mode = "Unknown"
-    if (device.settings.alternate.interfaceProtocol == 0x01) {
-        mode = "Runtime";
-    } else if (device.settings.alternate.interfaceProtocol == 0x02) {
-        mode = "DFU";
+export function parseMemoryDescriptor(desc) {
+    const nameEndIndex = desc.indexOf("/");
+    if (!desc.startsWith("@") || nameEndIndex == -1) {
+        throw `Not a DfuSe memory descriptor: "${desc}"`;
     }
 
-    const cfg = device.settings.configuration.configurationValue;
-    const intf = device.settings["interface"].interfaceNumber;
-    const alt = device.settings.alternate.alternateSetting;
-    const serial = device.device_.serialNumber;
-    let info = `${mode}: [${vid}:${pid}] cfg=${cfg}, intf=${intf}, alt=${alt}, name="${name}" serial="${serial}"`;
-    return info;
-}
+    const name = desc.substring(1, nameEndIndex).trim();
+    const segmentString = desc.substring(nameEndIndex);
 
-export function formatDFUInterfaceAlternate(settings) {
-    let mode = "Unknown"
-    if (settings.alternate.interfaceProtocol == 0x01) {
-        mode = "Runtime";
-    } else if (settings.alternate.interfaceProtocol == 0x02) {
-        mode = "DFU";
-    }
+    let segments = [];
 
-    const cfg = settings.configuration.configurationValue;
-    const intf = settings["interface"].interfaceNumber;
-    const alt = settings.alternate.alternateSetting;
-    const name = (settings.name) ? settings.name : "UNKNOWN";
+    const sectorMultipliers = {
+        ' ': 1,
+        'B': 1,
+        'K': 1024,
+        'M': 1048576
+    };
 
-    return `${mode}: cfg=${cfg}, intf=${intf}, alt=${alt}, name="${name}"`;
-}
+    let contiguousSegmentRegex = /\/\s*(0x[0-9a-fA-F]{1,8})\s*\/(\s*[0-9]+\s*\*\s*[0-9]+\s?[ BKM]\s*[abcdefg]\s*,?\s*)+/g;
+    let contiguousSegmentMatch;
+    while (contiguousSegmentMatch = contiguousSegmentRegex.exec(segmentString)) {
+        let segmentRegex = /([0-9]+)\s*\*\s*([0-9]+)\s?([ BKM])\s*([abcdefg])\s*,?\s*/g;
+        let startAddress = parseInt(contiguousSegmentMatch[1], 16);
+        let segmentMatch;
+        while (segmentMatch = segmentRegex.exec(contiguousSegmentMatch[0])) {
+            let segment = {}
+            let sectorCount = parseInt(segmentMatch[1], 10);
+            let sectorSize = parseInt(segmentMatch[2]) * sectorMultipliers[segmentMatch[3]];
+            let properties = segmentMatch[4].charCodeAt(0) - 'a'.charCodeAt(0) + 1;
+            segment.start = startAddress;
+            segment.sectorSize = sectorSize;
+            segment.end = startAddress + sectorSize * sectorCount;
+            segment.readable = (properties & 0x1) != 0;
+            segment.erasable = (properties & 0x2) != 0;
+            segment.writable = (properties & 0x4) != 0;
+            segments.push(segment);
 
-export async function fixInterfaceNames(device_, interfaces) {
-    // Check if any interface names were not read correctly
-    if (interfaces.some(intf => (intf.name == null))) {
-        // Manually retrieve the interface name string descriptors
-        let tempDevice = new dfu.Device(device_, interfaces[0]);
-        await tempDevice.device_.open();
-        await tempDevice.device_.selectConfiguration(1);
-        let mapping = await tempDevice.readInterfaceNames();
-        await tempDevice.close();
-
-        for (let intf of interfaces) {
-            if (intf.name === null) {
-                let configIndex = intf.configuration.configurationValue;
-                let intfNumber = intf["interface"].interfaceNumber;
-                let alt = intf.alternate.alternateSetting;
-                intf.name = mapping[configIndex][intfNumber][alt];
-            }
+            startAddress += sectorSize * sectorCount;
         }
     }
-}
+
+    return { "name": name, "segments": segments };
+};
