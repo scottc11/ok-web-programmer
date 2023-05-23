@@ -1,5 +1,9 @@
 import { parseMemoryDescriptor } from "./dfu-util";
 
+function delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 type DFUStatus = {
     status: number,
     pollTimeout: number,
@@ -219,42 +223,69 @@ class DFU {
      * @param data the firmware file to upload to device
      */
     async upload(data: ArrayBuffer) {
-        let bytes_sent = 0;
-        let expected_size = data.byteLength;
-        let transaction = 0;
 
         const status = await this.getStatus();
         if (status.status == this.dfuERROR) {
             await this.clearStatus(); // clearing device status just seems to fix things 🤷‍♂️
         }
 
-        // erase sector
-        await this.erase(0x08000000, data.byteLength) // TODO: port functions which obtain this number from the device itself
+        const startAddress = 0x08000000;
 
-        // while (bytes_sent < expected_size) {
-        //     const bytes_left = expected_size - bytes_sent;
-        //     const chunk_size = Math.min(bytes_left, this.transferSize);
+        console.log(`Erasing sector 0x${startAddress.toString(16)}...`)
+        await this.erase(startAddress, data.byteLength) // TODO: port functions which obtain this number from the device itself
+        console.log(`Sector 0x${startAddress.toString(16)} erased. `)
+
+        let bytes_sent = 0;
+        let expected_size = data.byteLength;
+        let transaction = 0;
+        let address = startAddress;
+        
+        console.log(`⬆️⬆️⬆️ Uploading ${data.byteLength} bytes into sector 0x${startAddress.toString(16)}...`)
+        while (bytes_sent < expected_size) {
+            const bytes_left = expected_size - bytes_sent;
+            const chunk_size = Math.min(bytes_left, this.transferSize);
             
-        //     let status;
-        //     let result: USBOutTransferResult;
+            let status;
+            let result: USBOutTransferResult;
 
-        //     try {
-        //         const chunk = data.slice(bytes_sent, bytes_sent + chunk_size);
-        //         result = await this.write(this.DNLOAD, chunk, transaction++);
-        //         console.log(`Sent ${result.bytesWritten} bytes`);
-        //         status = await this.waitTillDevice((state: any) => state == this.dfuDNLOAD_IDLE);
-        //     } catch (error) {
-        //         throw "Error during DFU download: " + error;
-        //     }
+            try {
+                await this.dfuseCommand(this.SET_ADDRESS, address, 4);
+                console.log(`Set address to 0x${address.toString(16)}`);
 
-        //     // if (status != this.STATUS_OK) {
-        //     //     throw `DFU DOWNLOAD failed state=${dfu_status.state}, status=${dfu_status.status}`;
-        //     // }
+                const chunk = data.slice(bytes_sent, bytes_sent + chunk_size);
+                result = await this.write(this.DNLOAD, chunk, 2);
+                console.log(`Sent ${result.bytesWritten} bytes`);
+                
+                status = await this.waitTillDevice((state: any) => state == this.dfuDNLOAD_IDLE);
+                
+                address += chunk_size;
+            } catch (error) {
+                console.log(error);
+                throw "Error during DFU download: " + error;
+            }
 
-        //     console.log("Wrote " + result.bytesWritten + " bytes");
-        //     bytes_sent += result.bytesWritten;
-        //     console.log(bytes_sent, expected_size);
-        // }
+            if (status.status != this.STATUS_OK) {
+                throw `DFU DOWNLOAD failed state=${status.state}, status=${status.status}`;
+            }
+
+            bytes_sent += result.bytesWritten;
+            console.log(`${bytes_sent} of ${expected_size} written`);
+        }
+
+        console.log("Resetting device...");
+        try {
+            await this.dfuseCommand(this.SET_ADDRESS, startAddress, 4);
+            await this.write(this.DNLOAD, new ArrayBuffer(0), 0);
+        } catch (error) {
+            throw "Error during DfuSe manifestation: " + error;
+        }
+
+        try {
+            await this.waitTillDevice((state: any) => (state == this.dfuMANIFEST));
+            console.log('\nFirmware upload complete. 🙌 \n');
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     async erase(startAddr: number, length: number) {
