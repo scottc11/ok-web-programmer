@@ -9,12 +9,12 @@ function App() {
   const [deviceStatus, setDeviceStatus] = useState('');
   const [file, setFile] = useState<any>(null);
 
-  const connect = () => {
+  const connect = async () => {
     navigator.usb.requestDevice({ filters: [] }).then(async (device: USBDevice) => {
       await dfu.connect(device);
-      if (dfu.isOpened) {
+      if (dfu.isOpened()) {
         const status = await dfu.getStatus();
-        setDeviceStatus('status.status');
+        setDeviceStatus(`${status.status}`);
       } else {
         setDeviceStatus('Failed to connect to device');
       }
@@ -29,9 +29,6 @@ function App() {
 
   const chooseFile = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
-      
-      console.log(event.target.files);
-      
       const reader = new FileReader();
       
       reader.onload = () => {
@@ -41,11 +38,6 @@ function App() {
       reader.readAsArrayBuffer(event.target.files[0]);
     }
   }
-
-  useEffect(() => {
-    console.log(file);
-  }, [file]);
-
 
   return (
     <div className="app">

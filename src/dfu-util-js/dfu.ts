@@ -62,15 +62,16 @@ class DFU {
 
         this.appIDLE = 0;
         this.appDETACH = 1;
-        this.dfuIDLE = 2;
-        this.dfuDNLOAD_SYNC = 3;
-        this.dfuDNBUSY = 4;
-        this.dfuDNLOAD_IDLE = 5;
-        this.dfuMANIFEST_SYNC = 6;
-        this.dfuMANIFEST = 7;
-        this.dfuMANIFEST_WAIT_RESET = 8;
-        this.dfuUPLOAD_IDLE = 9;
-        this.dfuERROR = 10;
+
+        this.dfuIDLE = 2;                // Indicates that the DFU process is in an idle state.
+        this.dfuDNLOAD_SYNC = 3;         //  Indicates synchronization between the host and the device for the download process.
+        this.dfuDNBUSY = 4;              // Indicates that the device is busy with the download process.
+        this.dfuDNLOAD_IDLE = 5;         // Indicates that the device is ready to receive a new firmware image for download.
+        this.dfuMANIFEST_SYNC = 6;       // Indicates synchronization between the host and the device for the manifest phase.
+        this.dfuMANIFEST = 7;            // Indicates that the device is processing the manifest phase.
+        this.dfuMANIFEST_WAIT_RESET = 8; // Indicates that the device is waiting for a reset after the manifest phase.
+        this.dfuUPLOAD_IDLE = 9;         // Indicates that the device is ready to upload data.
+        this.dfuERROR = 10;              // Indicates an error occurred during the DFU process.
 
         this.STATUS_OK = 0x0;
 
@@ -94,25 +95,29 @@ class DFU {
         if (this.device) {
             try {
                 await this.device.open();
+                console.log('Device opened');
             } catch (error) {
                 console.log(error);
             }
 
             try {
                 await this.device.selectConfiguration(this.configuration);
-                this.memoryInfo = parseMemoryDescriptor(settings.alternate.interfaceName);
+                this.memoryInfo = parseMemoryDescriptor("@Internal Flash  /0x08000000/04*016Kg,01*064Kg,03*128Kg");
+                console.log(`Selected configuration ${this.configuration}`);
             } catch (error) {
                 console.log(error);
             }
 
             try {
                 await this.device.claimInterface(this.interface);
+                console.log(`Claimed interface ${this.interface}`);
             } catch (error) {
                 console.log(error);
             }
 
             try {
                 await this.device.selectAlternateInterface(this.interface, this.alternateInterface);
+                console.log(`Selected alt interface ${this.alternateInterface}`);
             } catch (error) {
                 console.log(error);
             }
@@ -138,7 +143,6 @@ class DFU {
                 "value": wValue,
                 "index": this.interface
             }, wLength);
-            console.log(res);
             if (res.status == "ok") {
                 return Promise.resolve(res);
             } else {
@@ -201,6 +205,11 @@ class DFU {
         return status;
     }
 
+    async clearStatus() {
+        const tempBufferSource = new ArrayBuffer(0);
+        return this.write(this.CLRSTATUS, tempBufferSource, 0);
+    };
+
     isOpened() {
         return this.device.opened;
     }
@@ -214,34 +223,38 @@ class DFU {
         let expected_size = data.byteLength;
         let transaction = 0;
 
+        const status = await this.getStatus();
+        if (status.status == this.dfuERROR) {
+            await this.clearStatus(); // clearing device status just seems to fix things 🤷‍♂️
+        }
 
         // erase sector
+        await this.erase(0x08000000, data.byteLength) // TODO: port functions which obtain this number from the device itself
 
-
-        while (bytes_sent < expected_size) {
-            const bytes_left = expected_size - bytes_sent;
-            const chunk_size = Math.min(bytes_left, this.transferSize);
+        // while (bytes_sent < expected_size) {
+        //     const bytes_left = expected_size - bytes_sent;
+        //     const chunk_size = Math.min(bytes_left, this.transferSize);
             
-            let status;
-            let result: USBOutTransferResult;
+        //     let status;
+        //     let result: USBOutTransferResult;
 
-            try {
-                const chunk = data.slice(bytes_sent, bytes_sent + chunk_size);
-                result = await this.write(this.DNLOAD, chunk, transaction++);
-                console.log(`Sent ${result.bytesWritten} bytes`);
-                status = await this.waitTillDevice((state: any) => state == this.dfuDNLOAD_IDLE);
-            } catch (error) {
-                throw "Error during DFU download: " + error;
-            }
+        //     try {
+        //         const chunk = data.slice(bytes_sent, bytes_sent + chunk_size);
+        //         result = await this.write(this.DNLOAD, chunk, transaction++);
+        //         console.log(`Sent ${result.bytesWritten} bytes`);
+        //         status = await this.waitTillDevice((state: any) => state == this.dfuDNLOAD_IDLE);
+        //     } catch (error) {
+        //         throw "Error during DFU download: " + error;
+        //     }
 
-            // if (status != this.STATUS_OK) {
-            //     throw `DFU DOWNLOAD failed state=${dfu_status.state}, status=${dfu_status.status}`;
-            // }
+        //     // if (status != this.STATUS_OK) {
+        //     //     throw `DFU DOWNLOAD failed state=${dfu_status.state}, status=${dfu_status.status}`;
+        //     // }
 
-            console.log("Wrote " + result.bytesWritten + " bytes");
-            bytes_sent += result.bytesWritten;
-            console.log(bytes_sent, expected_size);
-        }
+        //     console.log("Wrote " + result.bytesWritten + " bytes");
+        //     bytes_sent += result.bytesWritten;
+        //     console.log(bytes_sent, expected_size);
+        // }
     }
 
     async erase(startAddr: number, length: number) {
@@ -302,6 +315,7 @@ class DFU {
         try {
             await this.write(this.DNLOAD, payload, 0); // this line used the 'download' method
         } catch (error) {
+            console.log(error);
             throw "Error during special DfuSe command " + commandNames[command] + ":" + error;
         }
 
