@@ -88,6 +88,9 @@ class DFU {
         this.device = _device;
         let interfaces = this.findDeviceDfuInterfaces();
         console.log(this.device);
+        console.log(this.device.productName);
+        console.log(this.device.manufacturerName);
+        console.log(this.device.serialNumber);
         const settings = interfaces[0];
         console.log(settings);
 

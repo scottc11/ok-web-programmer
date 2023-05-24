@@ -13,6 +13,7 @@ It is a port of the [webdfu project](https://github.com/devanlai/webdfu) by deva
 Based on the following guides
 
 ## Reference
+- [Icon Library](https://react-icons.github.io/react-icons)
 - [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
 - [React/TypeScript Cheat Sheet](https://react-typescript-cheatsheet.netlify.app/docs/basic/setup)
 - [FlexBox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
