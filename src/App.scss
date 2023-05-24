@@ -2,26 +2,19 @@
 
 body {
   background-color: $background-color;
-  @extend %flexRowCenterPosition;
-  font-family: "Ubuntu", sans-serif;
   margin: 3rem;
 }
 
-html::-webkit-scrollbar {
-  width: 3px;
-}
-
-html::-webkit-scrollbar-thumb {
-  background-color: $amber-sae-ece;
-}
-
-html::-webkit-scrollbar-track {
-  background-color: transparent;
-}
-
 .app {
-  // display: flex;
-
+  font-family: $font-roboto-mono;
+  
+  &__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
 }
 
 .accent {

@@ -59,7 +59,7 @@ function App() {
   return (
     <div className="app">
       <Header />
-      <div>
+      <div className="app__body">
         <div>
           <h1>
             Firmware Uploader
@@ -145,7 +145,8 @@ function App() {
             <li>Once the upload process is complete, the module should automatically reset itself and start running the newly uploaded firmware</li>
             <li>Power off your Eurorack system / disconnect the power supply</li>
             <li>Gently remove the USB cable from the modules USB connector</li>
-            <li>You can now mount the module back into your case, you are done!</li>
+            <li>You can now mount the module back into your case.</li>
+            <li>You are done!</li>
           </ul>
         </div>
       </div>
