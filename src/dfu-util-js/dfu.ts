@@ -1,8 +1,14 @@
 import { parseMemoryDescriptor } from "./dfu-util";
 
+function calculatePercentage(current: number, total: number) {
+    return (current / total) * 100;
+}
+
 function delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+export type ProgressCallback = (percentage: number, state: string) => void;
 
 type DFUStatus = {
     status: number,
@@ -19,6 +25,8 @@ enum DfuseCommand {
 class DFU {
     device: USBDevice;
     
+    progressCallback: ProgressCallback;
+
     configuration: number;
     interface: number;
     alternateInterface: number;
@@ -82,6 +90,10 @@ class DFU {
         this.GET_COMMANDS = 0x00;
         this.SET_ADDRESS = 0x21;
         this.ERASE_SECTOR = 0x41;
+    }
+
+    setProgressCallback(callback: ProgressCallback) {
+        this.progressCallback = callback;
     }
 
     async connect(_device: USBDevice) {
@@ -258,7 +270,7 @@ class DFU {
                 const chunk = data.slice(bytes_sent, bytes_sent + chunk_size);
                 result = await this.write(this.DNLOAD, chunk, 2);
                 console.log(`Sent ${result.bytesWritten} bytes`);
-                
+                this.progressCallback(calculatePercentage(bytes_sent, expected_size), 'Uploading');
                 status = await this.waitTillDevice((state: any) => state == this.dfuDNLOAD_IDLE);
                 
                 address += chunk_size;
@@ -274,7 +286,8 @@ class DFU {
             bytes_sent += result.bytesWritten;
             console.log(`${bytes_sent} of ${expected_size} written`);
         }
-
+        console.log('\nFirmware upload complete. 🙌 \n');
+        this.progressCallback(100, 'Done');
         console.log("Resetting device...");
         try {
             await this.dfuseCommand(this.SET_ADDRESS, startAddress, 4);
@@ -320,7 +333,9 @@ class DFU {
             addr = sectorAddr + segment.sectorSize;
             bytesErased += segment.sectorSize;
             console.log(`Erased ${bytesErased} of ${bytesToErase} bytes`);
+            this.progressCallback(calculatePercentage(bytesErased, bytesToErase), 'Erasing');
         }
+        this.progressCallback(100, 'Erasing finised');
     };
 
     async dfuseCommand(command: DfuseCommand, param: number = undefined, len: number = undefined) {

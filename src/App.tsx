@@ -3,7 +3,7 @@ import { AiOutlineDownload } from "react-icons/ai";
 import { TbCircuitPushbutton } from "react-icons/tb";
 import { GrConnect } from "react-icons/gr";
 
-import DFU from "./dfu-util-js/dfu";
+import DFU, { ProgressCallback } from "./dfu-util-js/dfu";
 import "./App.scss";
 import Header from "./components/Header/Header";
 
@@ -13,10 +13,18 @@ function App() {
   const [connected, setConnected] = useState(false);
   const [deviceStatus, setDeviceStatus] = useState('');
   const [file, setFile] = useState<any>(null);
+  const [progress, setProgress] = useState(0);
+  const [uploadStatus, setUploadStatus] = useState('');
+
+  const handleProgress: ProgressCallback = (percentage, state) => {
+    setProgress(percentage);
+    setUploadStatus(state);
+  }
 
   const connect = async () => {
     navigator.usb.requestDevice({ filters: [] }).then(async (device: USBDevice) => {
       await dfu.connect(device);
+      dfu.setProgressCallback(handleProgress);
       if (dfu.isOpened()) {
         setConnected(true);
         const status = await dfu.getStatus();
@@ -26,7 +34,6 @@ function App() {
       }
     });
   };
-
 
   const disconnect = async () => {
     await dfu.disconnect();
@@ -72,7 +79,7 @@ function App() {
           <p>You need a copy of the firmware you wish to upload to your module. To do so:</p>
           <ul>
             <li>Navigate to the <a target="_blank" href="https://github.com/scottc11/ok-web-programmer/blob/master/src/firmware">GitHub repository</a> which holds all the available firmware files.</li>
-            <li>Select the firmware file you wish to upload.</li>
+            <li>Select the firmware file you wish to upload. It will have a <b>'.bin'</b> extension.</li>
             <li>On the far right, there should be a <AiOutlineDownload /> icon. Press that, and <b>download the file to your local computer</b>.</li>
           </ul>
         </div>
@@ -125,6 +132,11 @@ function App() {
             <li>Now press the Upload button</li>
             <br></br>
             <button disabled={dfu && file ? false : true} onClick={() => dfu.upload(file)}>Upload</button>
+            { dfu && file &&
+              <p>
+                {uploadStatus}: %{progress.toFixed(2)}
+              </p>
+            }
           </ul>
         </div>
         <div>
