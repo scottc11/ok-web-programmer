@@ -145,7 +145,8 @@ function App() {
             <li>Once the upload process is complete, the module should automatically reset itself and start running the newly uploaded firmware</li>
             <li>Power off your Eurorack system / disconnect the power supply</li>
             <li>Gently remove the USB cable from the modules USB connector</li>
-            <li>You can now mount the module back into your case.</li>
+            <li>You can now mount the module back into your case and turn on the power.</li>
+            <li>After the module powers up, you are going to want to <b>calibrate the BENDER components</b> (ALT + MODE)</li>
             <li>You are done!</li>
           </ul>
         </div>
